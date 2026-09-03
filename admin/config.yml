@@ -4,8 +4,8 @@ backend:
   branch: main
 media_folder: assets/work
 public_folder: assets/work
-site_url: https://edeastham.co.uk
-display_url: https://edeastham.co.uk
+site_url: https://ed-eastham.netlify.app
+display_url: https://ed-eastham.netlify.app
 locale: en
 
 collections:

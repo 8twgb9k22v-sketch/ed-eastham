@@ -2,3 +2,6 @@ deploy/
 src-png/
 index-*-backup.html
 .DS_Store
+
+# Local Netlify folder
+.netlify
