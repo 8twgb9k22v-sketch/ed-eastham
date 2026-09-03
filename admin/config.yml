@@ -1,0 +1,134 @@
+# Decap CMS configuration for edeastham. Edits content/site.json and uploads pictures to assets/work.
+backend:
+  name: git-gateway       # Netlify Identity + Git Gateway; Ed logs in with email and password
+  branch: main
+media_folder: assets/work
+public_folder: assets/work
+site_url: https://edeastham.co.uk
+display_url: https://edeastham.co.uk
+locale: en
+
+collections:
+  - name: site
+    label: Site
+    files:
+      - name: site
+        label: Words and works
+        file: content/site.json
+        format: json
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Wordmark, name: wordmark, widget: string }
+          - { label: Role, name: role, widget: string, required: false }
+          - { label: Tagline, name: tagline, widget: string, hint: One line under the logo and in the footer }
+          - { label: Email, name: email, widget: string }
+          - { label: Instagram link, name: instagram, widget: string, required: false }
+          - { label: Location, name: location, widget: string, required: false }
+          - label: Home
+            name: home
+            widget: object
+            fields:
+              - { label: Works shown on the home page, name: featured, widget: list, hint: File names from the works below, e.g. work-03.jpg }
+          - label: Pages
+            name: pages
+            widget: object
+            fields:
+              - label: About
+                name: about
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
+                  - { label: Portrait picture, name: image, widget: image, required: false }
+                  - label: CV
+                    name: cv
+                    widget: list
+                    required: false
+                    fields:
+                      - { label: Year, name: year, widget: string }
+                      - { label: Line, name: text, widget: string }
+              - label: Commission
+                name: commission
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
+                  - { label: Button text, name: cta, widget: string }
+                  - label: Steps
+                    name: steps
+                    widget: list
+                    fields:
+                      - { label: Step, name: t, widget: string }
+                      - { label: Detail, name: d, widget: text }
+              - label: Shop
+                name: shop
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
+              - label: Contact
+                name: contact
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
+          - label: Settings
+            name: settings
+            widget: object
+            fields:
+              - label: Colours
+                name: colours
+                widget: object
+                fields:
+                  - { label: Background, name: background, widget: color }
+                  - { label: Text, name: text, widget: color }
+                  - { label: Accent (buttons and links), name: accent, widget: color }
+              - { label: Typeface, name: typeface, widget: select, options: ["Hanken Grotesk", "Instrument Sans", "DM Sans", "Cormorant Garamond"] }
+              - label: Logo
+                name: logo
+                widget: object
+                fields:
+                  - { label: Style, name: style, widget: select, options: [{label: "The EE mark", value: mark}, {label: "My own image", value: image}] }
+                  - { label: Logo image, name: image, widget: image, required: false, hint: PNG with transparent background works best }
+              - label: Home page
+                name: home
+                widget: object
+                fields:
+                  - { label: Show Selected works, name: showSelectedWorks, widget: boolean, default: true }
+                  - { label: Show category list, name: showCategories, widget: boolean, default: true }
+                  - { label: Show Commission block, name: showCommission, widget: boolean, default: true }
+                  - { label: How many selected works, name: selectedCount, widget: number, min: 2, max: 12, default: 6 }
+              - label: Menu labels
+                name: labels
+                widget: object
+                fields:
+                  - { label: About, name: about, widget: string }
+                  - { label: Portfolio, name: portfolio, widget: string }
+                  - { label: Commission, name: commission, widget: string }
+                  - { label: Shop, name: shop, widget: string }
+                  - { label: Contact, name: contact, widget: string }
+              - label: Social links
+                name: social
+                widget: list
+                required: false
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Link, name: url, widget: string }
+              - { label: Footer line, name: footerLine, widget: string }
+          - label: Portfolio categories
+            name: categories
+            widget: list
+            fields:
+              - { label: Address slug, name: slug, widget: string, hint: lowercase-with-dashes, do not change once live }
+              - { label: Title, name: title, widget: string }
+              - { label: Intro line, name: intro, widget: string, required: false }
+              - label: Works
+                name: works
+                widget: list
+                fields:
+                  - { label: Picture, name: file, widget: image, hint: Upload a JPEG, ideally under 2000 pixels on the long side }
+                  - { label: Title, name: title, widget: string }
+                  - { label: Medium, name: medium, widget: string }
+                  - { label: Size, name: size, widget: string, required: false }
+                  - { label: Year, name: year, widget: string, required: false }
+                  - { label: Price, name: price, widget: string, required: false, hint: Fill in to list it in the Shop }
