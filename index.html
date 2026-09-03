@@ -254,7 +254,7 @@ body.menu,body.lbopen{overflow:hidden}
 /* Netlify Identity links (invites, password resets) land on the site root; hand them to the editor page */
 if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)){
   const w = document.createElement('script'); w.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
-  w.onload = () => { const ni = window.netlifyIdentity; if (!ni) return; ni.on('login', () => { document.location.href = '/admin/'; }); ni.init(); };
+  w.onload = () => { const ni = window.netlifyIdentity; if (!ni) return; ni.on('login', () => { document.location.href = '/admin/'; }); };
   document.head.appendChild(w);
 }
 /* All words and works live in content/site.json. Edit that file to change the site. */
