@@ -1,0 +1,21 @@
+{
+  "colours": {
+    "background": "#f6f5f2",
+    "text": "#161615",
+    "accent": "#161615"
+  },
+  "typeface": "Hanken Grotesk",
+  "logo": {
+    "style": "mark",
+    "image": ""
+  },
+  "labels": {
+    "about": "About",
+    "portfolio": "Portfolio",
+    "commission": "Commission",
+    "shop": "Shop",
+    "contact": "Contact"
+  },
+  "social": [],
+  "footerLine": "Images may not be reproduced without permission"
+}

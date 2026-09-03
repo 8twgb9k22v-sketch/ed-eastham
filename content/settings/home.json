@@ -1,0 +1,13 @@
+{
+  "featured": [
+    "work-03",
+    "work-04",
+    "work-07",
+    "work-06",
+    "work-02"
+  ],
+  "showSelectedWorks": true,
+  "showCategories": true,
+  "showCommission": true,
+  "selectedCount": 6
+}

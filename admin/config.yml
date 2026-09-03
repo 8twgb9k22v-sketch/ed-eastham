@@ -1,134 +1,173 @@
-# Decap CMS configuration for edeastham. Edits content/site.json and uploads pictures to assets/work.
+# Editing screen for edeastham. Each work, category and page is its own small file; build.js assembles them for the site.
 backend:
-  name: git-gateway       # Netlify Identity + Git Gateway; Ed logs in with email and password
+  name: git-gateway
   branch: main
-media_folder: assets/work
-public_folder: assets/work
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Remove {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Remove “{{path}}”"
 site_url: https://ed-eastham.netlify.app
 display_url: https://ed-eastham.netlify.app
+logo_url: /assets/logo/mark.png
 locale: en
+media_folder: assets/work
+public_folder: /assets/work
+editor:
+  preview: false
 
 collections:
-  - name: site
-    label: Site
+  - name: works
+    label: Works
+    label_singular: Work
+    folder: content/works
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{category}} {{year}}"
+    sortable_fields: [order, title, year, category]
+    view_groups:
+      - label: Category
+        field: category
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Picture, name: file, widget: image, hint: "JPEG, ideally under 2000 pixels on the long side. Drop the file here or choose from the ones already uploaded." }
+      - { label: Category, name: category, widget: relation, collection: categories, value_field: slug, search_fields: [title], display_fields: [title], hint: "Which portfolio page it sits on" }
+      - { label: Medium, name: medium, widget: string, hint: "e.g. Charcoal on canvas" }
+      - { label: Size, name: size, widget: string, required: false, hint: "e.g. 42 × 59 cm" }
+      - { label: Year, name: year, widget: string, required: false }
+      - { label: Price, name: price, widget: string, required: false, hint: "Fill in to list it in the Shop, e.g. £450" }
+      - { label: Sold, name: sold, widget: boolean, default: false, required: false }
+      - { label: Order on the page, name: order, widget: number, value_type: int, min: 1, default: 1, hint: "1 shows first" }
+
+  - name: categories
+    label: Portfolio categories
+    label_singular: Category
+    folder: content/categories
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{order}}. {{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Address, name: slug, widget: string, pattern: ["^[a-z0-9-]+$", "lowercase letters, numbers and dashes only"], hint: "Becomes the page address, e.g. charcoal-portraits. Do not change once the site is live." }
+      - { label: Intro line, name: intro, widget: string, required: false, hint: "One sentence shown under the category title" }
+      - { label: Order in the menu, name: order, widget: number, value_type: int, min: 1, default: 1 }
+
+  - name: pages
+    label: Pages
+    files:
+      - name: about
+        label: About
+        file: content/pages/about.json
+        format: json
+        fields:
+          - { label: Page title, name: title, widget: string }
+          - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text }, hint: "Your bio, one paragraph per box" }
+          - { label: Picture beside the bio, name: image, widget: image, required: false }
+          - label: Exhibitions and education
+            name: cv
+            widget: list
+            required: false
+            summary: "{{fields.year}}  {{fields.text}}"
+            fields:
+              - { label: Year, name: year, widget: string }
+              - { label: Line, name: text, widget: string }
+      - name: commission
+        label: Commission
+        file: content/pages/commission.json
+        format: json
+        fields:
+          - { label: Page title, name: title, widget: string }
+          - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
+          - { label: Button text, name: cta, widget: string, hint: "The email button, e.g. Enquire about a commission" }
+          - label: Steps
+            name: steps
+            widget: list
+            summary: "{{fields.t}}"
+            fields:
+              - { label: Step, name: t, widget: string }
+              - { label: Detail, name: d, widget: text }
+      - name: shop
+        label: Shop
+        file: content/pages/shop.json
+        format: json
+        fields:
+          - { label: Page title, name: title, widget: string }
+          - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text }, hint: "Works with a price appear below this text automatically" }
+      - name: contact
+        label: Contact
+        file: content/pages/contact.json
+        format: json
+        fields:
+          - { label: Page title, name: title, widget: string }
+          - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
+
+  - name: settings
+    label: Site settings
     files:
       - name: site
-        label: Words and works
-        file: content/site.json
+        label: Site details
+        file: content/settings/site.json
         format: json
         fields:
           - { label: Name, name: name, widget: string }
-          - { label: Wordmark, name: wordmark, widget: string }
-          - { label: Role, name: role, widget: string, required: false }
-          - { label: Tagline, name: tagline, widget: string, hint: One line under the logo and in the footer }
-          - { label: Email, name: email, widget: string }
+          - { label: Name as shown in the header and footer, name: wordmark, widget: string }
+          - { label: Tagline, name: tagline, widget: string, hint: "One line under the logo and in the footer" }
+          - { label: Email, name: email, widget: string, hint: "Used for every Enquire button and the contact form" }
           - { label: Instagram link, name: instagram, widget: string, required: false }
-          - { label: Location, name: location, widget: string, required: false }
-          - label: Home
-            name: home
+          - { label: Location, name: location, widget: string, required: false, hint: "Shown in the footer if filled in" }
+          - { label: Role, name: role, widget: hidden, required: false }
+      - name: home
+        label: Home page
+        file: content/settings/home.json
+        format: json
+        fields:
+          - { label: Works shown on the home page, name: featured, widget: relation, collection: works, multiple: true, value_field: "{{slug}}", search_fields: [title], display_fields: [title], hint: "Pick four or five. They rotate beside the logo." }
+          - { label: Show Selected works, name: showSelectedWorks, widget: boolean, default: true }
+          - { label: How many selected works, name: selectedCount, widget: number, value_type: int, min: 2, max: 12, default: 6 }
+          - { label: Show the category list, name: showCategories, widget: boolean, default: true }
+          - { label: Show the Commission block, name: showCommission, widget: boolean, default: true }
+      - name: look
+        label: Look and feel
+        file: content/settings/look.json
+        format: json
+        fields:
+          - label: Colours
+            name: colours
             widget: object
             fields:
-              - { label: Works shown on the home page, name: featured, widget: list, hint: File names from the works below, e.g. work-03.jpg }
-          - label: Pages
-            name: pages
+              - { label: Background, name: background, widget: color }
+              - { label: Text, name: text, widget: color }
+              - { label: Accent for buttons and links, name: accent, widget: color }
+          - { label: Typeface, name: typeface, widget: select, options: ["Hanken Grotesk", "Instrument Sans", "DM Sans", "Cormorant Garamond"] }
+          - label: Logo
+            name: logo
             widget: object
             fields:
-              - label: About
-                name: about
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
-                  - { label: Portrait picture, name: image, widget: image, required: false }
-                  - label: CV
-                    name: cv
-                    widget: list
-                    required: false
-                    fields:
-                      - { label: Year, name: year, widget: string }
-                      - { label: Line, name: text, widget: string }
-              - label: Commission
-                name: commission
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
-                  - { label: Button text, name: cta, widget: string }
-                  - label: Steps
-                    name: steps
-                    widget: list
-                    fields:
-                      - { label: Step, name: t, widget: string }
-                      - { label: Detail, name: d, widget: text }
-              - label: Shop
-                name: shop
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
-              - label: Contact
-                name: contact
-                widget: object
-                fields:
-                  - { label: Title, name: title, widget: string }
-                  - { label: Paragraphs, name: body, widget: list, field: { label: Paragraph, name: p, widget: text } }
-          - label: Settings
-            name: settings
+              - { label: Style, name: style, widget: select, options: [{ label: "The EE mark", value: mark }, { label: "My own image", value: image }] }
+              - { label: Logo image, name: image, widget: image, required: false, hint: "PNG with a transparent background" }
+          - label: Menu labels
+            name: labels
             widget: object
             fields:
-              - label: Colours
-                name: colours
-                widget: object
-                fields:
-                  - { label: Background, name: background, widget: color }
-                  - { label: Text, name: text, widget: color }
-                  - { label: Accent (buttons and links), name: accent, widget: color }
-              - { label: Typeface, name: typeface, widget: select, options: ["Hanken Grotesk", "Instrument Sans", "DM Sans", "Cormorant Garamond"] }
-              - label: Logo
-                name: logo
-                widget: object
-                fields:
-                  - { label: Style, name: style, widget: select, options: [{label: "The EE mark", value: mark}, {label: "My own image", value: image}] }
-                  - { label: Logo image, name: image, widget: image, required: false, hint: PNG with transparent background works best }
-              - label: Home page
-                name: home
-                widget: object
-                fields:
-                  - { label: Show Selected works, name: showSelectedWorks, widget: boolean, default: true }
-                  - { label: Show category list, name: showCategories, widget: boolean, default: true }
-                  - { label: Show Commission block, name: showCommission, widget: boolean, default: true }
-                  - { label: How many selected works, name: selectedCount, widget: number, min: 2, max: 12, default: 6 }
-              - label: Menu labels
-                name: labels
-                widget: object
-                fields:
-                  - { label: About, name: about, widget: string }
-                  - { label: Portfolio, name: portfolio, widget: string }
-                  - { label: Commission, name: commission, widget: string }
-                  - { label: Shop, name: shop, widget: string }
-                  - { label: Contact, name: contact, widget: string }
-              - label: Social links
-                name: social
-                widget: list
-                required: false
-                fields:
-                  - { label: Label, name: label, widget: string }
-                  - { label: Link, name: url, widget: string }
-              - { label: Footer line, name: footerLine, widget: string }
-          - label: Portfolio categories
-            name: categories
+              - { label: About, name: about, widget: string }
+              - { label: Portfolio, name: portfolio, widget: string }
+              - { label: Commission, name: commission, widget: string }
+              - { label: Shop, name: shop, widget: string }
+              - { label: Contact, name: contact, widget: string }
+          - label: Social links
+            name: social
             widget: list
+            required: false
+            summary: "{{fields.label}}"
             fields:
-              - { label: Address slug, name: slug, widget: string, hint: lowercase-with-dashes, do not change once live }
-              - { label: Title, name: title, widget: string }
-              - { label: Intro line, name: intro, widget: string, required: false }
-              - label: Works
-                name: works
-                widget: list
-                fields:
-                  - { label: Picture, name: file, widget: image, hint: Upload a JPEG, ideally under 2000 pixels on the long side }
-                  - { label: Title, name: title, widget: string }
-                  - { label: Medium, name: medium, widget: string }
-                  - { label: Size, name: size, widget: string, required: false }
-                  - { label: Year, name: year, widget: string, required: false }
-                  - { label: Price, name: price, widget: string, required: false, hint: Fill in to list it in the Shop }
+              - { label: Label, name: label, widget: string }
+              - { label: Link, name: url, widget: string }
+          - { label: Footer line, name: footerLine, widget: string, required: false }

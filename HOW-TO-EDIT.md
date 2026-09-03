@@ -1,61 +1,21 @@
 # Editing the site
 
-Everything you can change lives in two places. No code needed.
+Go to **ed-eastham.netlify.app/admin** (later edeastham.co.uk/admin), press **Login with Netlify Identity**, and use your email and password. Works on Mac, Windows and phone; a laptop is more comfortable.
 
-## 1. Words: `content/site.json`
+Everything saves with **Publish → Publish now**. The live site updates about a minute later.
 
-Open it in any text editor (TextEdit on Mac, Notepad on Windows). Each page has a
-`title` and a `body`, which is a list of paragraphs in quotes. Change the words
-between the quotes, keep the quotes and commas as they are, save.
+## Works
+**Works** in the left column lists every piece with its picture. **New Work**: type the title, drop the photo on the Picture box, pick the Category, add medium, size and year. **Price** lists it in the Shop; **Sold** marks it sold. **Order** decides where it sits on its page (1 first). To change a picture, open the work and choose a new one.
 
-- `email` at the top is used everywhere (Contact, Commission button, footer).
-- `instagram`: paste your Instagram link between the quotes and a link appears.
-- `home` > `featured`: the file names of the works that rotate on the homepage.
+## Portfolio categories
+Rename a category, add an intro line, or reorder the menu. The **Address** becomes the page's web address; leave it alone once the site is live. **New Category** adds a page and a menu entry.
 
-## 2. Pictures: the `assets/work` folder
+## Pages
+About (bio, picture, exhibitions), Commission (text, button, steps), Shop text, Contact text. One box per paragraph.
 
-1. Copy your photo into `assets/work` (JPEG, ideally under 2000 pixels on the long side).
-2. In `content/site.json`, find the category (for example `"slug": "life-drawings"`)
-   and add a line inside its `works` list:
+## Site settings
+- **Site details**: name, tagline, email (used by every Enquire button and the contact form), Instagram, location.
+- **Home page**: which works rotate beside the logo, and which blocks show.
+- **Look and feel**: colours, typeface, your own logo, menu labels, social links, footer line.
 
-   `{ "file": "my-drawing.jpg", "title": "Sitting figure", "medium": "Charcoal on paper", "size": "42 x 59 cm", "year": "2026" }`
-
-   Put a comma between entries. `size` and `year` are optional.
-3. To sell a piece, add `"price": "£450"` to its line and it appears in the Shop.
-
-If the page goes blank after an edit, a comma or quote is missing. Paste the file
-into https://jsonlint.com to find the line.
-
-## 3. About page CV
-
-In `content/site.json` under `about`, the `cv` list is empty. Add lines like
-`{ "year": "2025", "text": "Group show, Somewhere Gallery, Manchester" }` and a
-"Selected exhibitions and education" section appears under your bio.
-
-## 4. Category intros
-
-Each category has an `intro` field. A sentence there appears under the category title.
-The site is always light, whatever the visitor's phone is set to.
-
-## 5. Editing from a login screen instead (Decap CMS)
-
-The folder `admin/` is a ready-made editing screen: `edeastham.co.uk/admin`, log in,
-click a category, "Add work", upload the photo, fill in title and medium, Publish. The
-site updates itself a minute later. It needs three free things set up once:
-
-1. The site in a GitHub repository (github.com, free).
-2. Hosting that rebuilds from that repository: Cloudflare Pages or Netlify (free).
-3. A login: Netlify Identity (easiest, invite Ed by email) or GitHub login via a small
-   helper. Then set `repo` and `backend` in `admin/config.yml`.
-
-Until that is done the `/admin` page shows a config error and can be ignored.
-
-## 6. Look and feel (Settings)
-
-In the editor there is a **Settings** section (or the `settings` block in `content/site.json`):
-- **Colours**: background, text and an accent for buttons and links. Keep text dark on a light background so it stays readable.
-- **Typeface**: Hanken Grotesk (default), Instrument Sans, DM Sans, or Cormorant Garamond for a classic serif look.
-- **Logo**: the EE mark, or upload your own image (PNG with a transparent background).
-- **Home page**: show or hide Selected works, the category list and the Commission block; how many selected works to show.
-- **Menu labels**: rename About, Portfolio, Commission, Shop, Contact.
-- **Social links** and the **footer line**.
+If something looks wrong after publishing, open it again and check the field; nothing is lost, every change is kept in history.

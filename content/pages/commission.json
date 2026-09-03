@@ -1,0 +1,22 @@
+{
+  "title": "Commission",
+  "body": [
+    "Portraits and figurative works can be commissioned in charcoal, oil or mixed media, worked from your photographs or from sittings.",
+    "Send a short note with what you have in mind, the size you would like and any photographs, and Ed will reply with timings and a price."
+  ],
+  "cta": "Enquire about a commission",
+  "steps": [
+    {
+      "t": "Enquire",
+      "d": "Email a short note with what you have in mind: who or what, the size you would like, and any photographs."
+    },
+    {
+      "t": "Agree the piece",
+      "d": "Ed replies with a medium, a size and a price. Charcoal, oil or mixed media, worked from your photographs or from sittings."
+    },
+    {
+      "t": "Sittings and delivery",
+      "d": "Progress photographs along the way, then the finished work delivered or collected, framed if you would like."
+    }
+  ]
+}
