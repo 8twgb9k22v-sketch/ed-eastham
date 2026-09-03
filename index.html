@@ -251,6 +251,8 @@ body.menu,body.lbopen{overflow:hidden}
 </div>
 
 <script>
+/* Netlify Identity links (invites, password resets) land on the site root; hand them to the editor page */
+if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash) && !/^\/admin/.test(location.pathname)) location.replace('/admin/' + location.hash);
 /* All words and works live in content/site.json. Edit that file to change the site. */
 const HASH = !!window.HASH_MODE || location.protocol === 'file:';
 const pathOf = () => HASH ? location.hash.replace(/^#\/?/, '') : location.pathname.replace(/^\/+|\/+$/g, '');
