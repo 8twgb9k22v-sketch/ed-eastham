@@ -1,17 +1,30 @@
 {
-  "name": "Ed Eastham",
-  "wordmark": "Ed Eastham",
-  "role": "Artist",
-  "email": "hello@edeastham.example",
-  "instagram": "",
-  "home": {
-    "featured": [
-      "work-03.jpg",
-      "work-04.jpg",
-      "work-07.jpg",
-      "work-06.jpg",
-      "work-02.jpg"
-    ]
+  "settings": {
+    "colours": {
+      "background": "#f6f5f2",
+      "text": "#161615",
+      "accent": "#161615"
+    },
+    "typeface": "Hanken Grotesk",
+    "logo": {
+      "style": "mark",
+      "image": ""
+    },
+    "home": {
+      "showSelectedWorks": true,
+      "showCategories": true,
+      "showCommission": true,
+      "selectedCount": 6
+    },
+    "labels": {
+      "about": "About",
+      "portfolio": "Portfolio",
+      "commission": "Commission",
+      "shop": "Shop",
+      "contact": "Contact"
+    },
+    "social": [],
+    "footerLine": "Images may not be reproduced without permission"
   },
   "pages": {
     "about": {
@@ -53,12 +66,18 @@
       ]
     },
     "contact": {
-      "title": "Contact",
+      "title": "Contact!",
       "body": [
         "For commissions, sales or anything else, email is best. Ed replies to everything."
       ]
     }
   },
+  "name": "Ed Eastham",
+  "tagline": "Portraits and figurative work in charcoal, oil and mixed media.",
+  "instagram": "",
+  "location": "",
+  "role": "Artist",
+  "wordmark": "Ed Eastham",
   "categories": [
     {
       "slug": "charcoal-portraits",
@@ -141,33 +160,14 @@
       "intro": ""
     }
   ],
-  "tagline": "Portraits and figurative work in charcoal, oil and mixed media.",
-  "location": "",
-  "settings": {
-    "colours": {
-      "background": "#f6f5f2",
-      "text": "#161615",
-      "accent": "#161615"
-    },
-    "typeface": "Hanken Grotesk",
-    "logo": {
-      "style": "mark",
-      "image": ""
-    },
-    "home": {
-      "showSelectedWorks": true,
-      "showCategories": true,
-      "showCommission": true,
-      "selectedCount": 6
-    },
-    "labels": {
-      "about": "About",
-      "portfolio": "Portfolio",
-      "commission": "Commission",
-      "shop": "Shop",
-      "contact": "Contact"
-    },
-    "social": [],
-    "footerLine": "Images may not be reproduced without permission"
+  "email": "hello@edeastham.example",
+  "home": {
+    "featured": [
+      "work-03.jpg",
+      "work-04.jpg",
+      "work-07.jpg",
+      "work-06.jpg",
+      "work-02.jpg"
+    ]
   }
 }
