@@ -52,7 +52,7 @@ collections:
       - { label: Year, name: year, widget: string, required: false }
       - { label: Price, name: price, widget: string, required: false, hint: "Fill in to list it in the Shop, e.g. £450" }
       - { label: Sold, name: sold, widget: boolean, default: false, required: false }
-      - { label: Order on the page, name: order, widget: number, value_type: int, min: 1, default: 1, hint: "1 shows first" }
+      - { label: Order on the page, name: order, widget: number, value_type: int, min: 1, default: 1, hint: "1 shows first, 2 next, and so on. Give each work in a category a different number, or two with the same number sort by age." }
 
   - name: categories
     label: Portfolio categories
