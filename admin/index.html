@@ -10,5 +10,9 @@
 <!-- Decap CMS: the editing screen. Needs the site on GitHub + Cloudflare Pages or Netlify with a login provider; see HOW-TO-EDIT.md -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<script>
+// after a sign-up or password reset on the Netlify site, people arrive here already logged in
+if (window.netlifyIdentity) window.netlifyIdentity.on("init", u => { if (!u) window.netlifyIdentity.on("login", () => document.location.reload()); });
+</script>
 </body>
 </html>

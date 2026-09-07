@@ -2,6 +2,8 @@
 backend:
   name: git-gateway
   branch: main
+  identity_url: https://ed-eastham.netlify.app/.netlify/identity
+  gateway_url: https://ed-eastham.netlify.app/.netlify/git
   commit_messages:
     create: "Add {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -10,10 +12,10 @@ backend:
     deleteMedia: "Remove “{{path}}”"
 site_url: https://8twgb9k22v-sketch.github.io/ed-eastham
 display_url: https://8twgb9k22v-sketch.github.io/ed-eastham
-logo_url: /assets/logo/mark.png
+logo_url: /ed-eastham/assets/logo/mark.png
 locale: en
 media_folder: assets/work
-public_folder: /assets/work
+public_folder: /ed-eastham/assets/work
 editor:
   preview: false
 

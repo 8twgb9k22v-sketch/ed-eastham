@@ -1,6 +1,6 @@
 # Editing the site
 
-Go to **ed-eastham.netlify.app/admin**, press **Login with Netlify Identity**, and use your email and password. Works on Mac, Windows and phone; a laptop is more comfortable.
+Go to **8twgb9k22v-sketch.github.io/ed-eastham/admin** (later edeastham.co.uk/admin), press **Login with Netlify Identity**, and use your email and password. Works on Mac, Windows and phone; a laptop is more comfortable.
 
 Everything saves with **Publish → Publish now**. The live site (**8twgb9k22v-sketch.github.io/ed-eastham**, later edeastham.co.uk) updates about a minute later; refresh the page to see it. Nothing is ever lost: every publish is kept in history.
 
