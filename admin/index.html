@@ -7,11 +7,7 @@
 <meta name="robots" content="noindex">
 </head>
 <body>
-<!-- The login service lives on Netlify; the editor lives here with the site. Start the login widget pointing at Netlify before the editor loads. -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  window.netlifyIdentity.init({ APIUrl: 'https://ed-eastham.netlify.app/.netlify/identity' });
-</script>
+<!-- The editor's own login form talks to the login service on Netlify (identity_url in config.yml). No widget: it would point itself at this address instead. -->
 <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
