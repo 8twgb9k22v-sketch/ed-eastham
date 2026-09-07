@@ -266,6 +266,7 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp
 const SUB = (location.pathname.match(/^\/ed-eastham(?=\/|$)/) || [''])[0];   /* '' on the real domain, '/ed-eastham' on github.io */
 const ROOT = HASH ? '' : SUB + '/';
 const work = f => ROOT + 'assets/work/' + f;
+const hasThumb = f => !S.thumbs || S.thumbs.includes(f);
 const allWorks = () => S.categories.flatMap(c => c.works.map(w => Object.assign({ cat: c }, w)));
 const findWork = f => allWorks().find(w => w.file === f);
 const capOf = w => [w.medium, w.size, w.year].filter(Boolean).join(', ');
@@ -368,7 +369,7 @@ function portfolio(){
     S.categories.map(c => '<li><a href="#/portfolio/' + c.slug + '"><div class="im">' + (c.works[0] ? '<img src="' + work(c.works[0].file) + '" alt="" loading="lazy">' : '') + '</div><span class="t">' + esc(c.title) + '</span><span class="n">' + (c.works.length ? c.works.length + (c.works.length === 1 ? ' work' : ' works') : 'Coming soon') + '<i></i></span></a></li>').join('') + '</ul></section>' + foot();
 }
 function figures(list, withPrice){
-  return list.map((w, i) => '<figure data-i="' + i + '" tabindex="0" role="button" aria-label="View ' + esc(w.title) + ' full size"><div class="im"><img class="lq" src="' + ROOT + 'assets/work/thumbs/' + w.file + '" data-full="' + work(w.file) + '" alt="' + esc(w.title) + (w.medium ? ', ' + esc(w.medium) : '') + '" loading="lazy"></div><figcaption><div><em>' + esc(w.title) + '</em>' + (w.year ? ', ' + esc(w.year) : '') + '<br><span>' + esc([w.medium, w.size].filter(Boolean).join(', ')) + '</span></div>' + (withPrice && w.price ? '<span class="price">' + esc(w.price) + '</span>' : '<a class="enq" href="mailto:' + esc(S.email) + '?subject=' + encodeURIComponent('Enquiry: ' + w.title) + '" onclick="event.stopPropagation()">Enquire</a>') + '</figcaption></figure>').join('');
+  return list.map((w, i) => '<figure data-i="' + i + '" tabindex="0" role="button" aria-label="View ' + esc(w.title) + ' full size"><div class="im">' + (hasThumb(w.file) ? '<img class="lq" src="' + ROOT + 'assets/work/thumbs/' + w.file + '" data-full="' + work(w.file) + '"' : '<img class="ld" src="' + work(w.file) + '"') + ' alt="' + esc(w.title) + (w.medium ? ', ' + esc(w.medium) : '') + '" loading="lazy"></div><figcaption><div><em>' + esc(w.title) + '</em>' + (w.year ? ', ' + esc(w.year) : '') + '<br><span>' + esc([w.medium, w.size].filter(Boolean).join(', ')) + '</span></div>' + (withPrice && w.price ? '<span class="price">' + esc(w.price) + '</span>' : '<a class="enq" href="mailto:' + esc(S.email) + '?subject=' + encodeURIComponent('Enquiry: ' + w.title) + '" onclick="event.stopPropagation()">Enquire</a>') + '</figcaption></figure>').join('');
 }
 function category(slug){
   const c = S.categories.find(x => x.slug === slug); if (!c) return portfolio();

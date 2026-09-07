@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm install --no-save --no-audit --no-fund sharp
       - run: node build.js
       - run: cp index.html 404.html
       - uses: actions/upload-pages-artifact@v3
