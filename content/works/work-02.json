@@ -1,11 +1,11 @@
 {
-  "title": "Untitled",
-  "file": "/assets/work/work-02.jpg",
-  "category": "figurative-works",
-  "medium": "Mixed media and gold leaf on board",
   "size": "",
-  "year": "",
   "price": "",
+  "order": 1,
   "sold": false,
-  "order": 1
+  "medium": "Mixed media and gold leaf on board",
+  "title": "Untitled",
+  "file": "/assets/work/work-05.jpg",
+  "year": "",
+  "category": "figurative-works"
 }
