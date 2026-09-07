@@ -8,8 +8,8 @@ backend:
     delete: "Remove {{collection}} “{{slug}}”"
     uploadMedia: "Upload “{{path}}”"
     deleteMedia: "Remove “{{path}}”"
-site_url: https://massidefazio.github.io/ed-eastham
-display_url: https://massidefazio.github.io/ed-eastham
+site_url: https://8twgb9k22v-sketch.github.io/ed-eastham
+display_url: https://8twgb9k22v-sketch.github.io/ed-eastham
 logo_url: /assets/logo/mark.png
 locale: en
 media_folder: assets/work
