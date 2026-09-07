@@ -21,7 +21,7 @@ collections:
   - name: works
     label: Works
     label_singular: Work
-    description: "Every artwork on the site. Click one to change its title, picture or details. New Work adds a piece: you choose its category inside. Changes go live a minute after Publish."
+    description: "Every artwork on the site. Click one to change its title, picture or details. New Work adds a piece and you choose its category inside. Use Filter to see one category. After Publish, the site updates within about a minute; refresh it to see the change."
     thumbnail: file
     folder: content/works
     format: json
@@ -31,13 +31,20 @@ collections:
     identifier_field: title
     summary: "{{title}} · {{medium}}"
     sortable_fields: [order, title, year, category]
+    view_filters:
+      - { label: Charcoal Portraits, field: category, pattern: "^charcoal-portraits$" }
+      - { label: Painted Portraits, field: category, pattern: "^painted-portraits$" }
+      - { label: Figurative Works, field: category, pattern: "^figurative-works$" }
+      - { label: Life Drawings, field: category, pattern: "^life-drawings$" }
+      - { label: Mixed Media / Gelli Prints, field: category, pattern: "^mixed-media$" }
+      - { label: Pen & Ink, field: category, pattern: "^pen-and-ink$" }
     view_groups:
       - label: Category
         field: category
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Picture, name: file, widget: image, hint: "JPEG, ideally under 2000 pixels on the long side. Drop the file here or choose from the ones already uploaded." }
-      - { label: Category, name: category, widget: relation, collection: categories, value_field: slug, search_fields: [title], display_fields: [title], hint: "Which portfolio page it sits on" }
+      - { label: Category, name: category, widget: relation, collection: categories, value_field: "{{slug}}", search_fields: [title], display_fields: [title], hint: "Which portfolio page it sits on" }
       - { label: Medium, name: medium, widget: string, hint: "e.g. Charcoal on canvas" }
       - { label: Size, name: size, widget: string, required: false, hint: "e.g. 42 × 59 cm" }
       - { label: Year, name: year, widget: string, required: false }
@@ -48,7 +55,7 @@ collections:
   - name: categories
     label: Portfolio categories
     label_singular: Category
-    description: "The six portfolio pages and their order in the menu. A category with no works shows Coming soon on the site."
+    description: "The portfolio pages and their order in the menu. A category with no works shows Coming soon. Deleting a category does not delete its works; they move to an Other works page until you re-file them."
     folder: content/categories
     format: json
     extension: json
@@ -59,7 +66,6 @@ collections:
     sortable_fields: [order, title]
     fields:
       - { label: Title, name: title, widget: string }
-      - { label: Address, name: slug, widget: string, pattern: ["^[a-z0-9-]+$", "lowercase letters, numbers and dashes only"], hint: "Becomes the page address, e.g. charcoal-portraits. Do not change once the site is live." }
       - { label: Intro line, name: intro, widget: string, required: false, hint: "One sentence shown under the category title" }
       - { label: Order in the menu, name: order, widget: number, value_type: int, min: 1, default: 1 }
 
