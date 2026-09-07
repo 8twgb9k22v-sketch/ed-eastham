@@ -9,18 +9,18 @@
   "home": {
     "featured": [
       "work-03.jpg",
-      "work-04.jpg",
+      "work-04",
       "work-07.jpg",
       "work-06.jpg",
-      "work-02.jpg"
+      "work-02"
     ]
   },
   "pages": {
     "about": {
       "title": "About",
       "body": [
-        "Ed Eastham is an artist working in charcoal, oil and mixed media, with a focus on portraiture and the figure.",
-        "Bio to come. Ed will add this."
+        "Ed Eastham is a contemporary artist based in Manchester working in charcoal, chalk, acrylic, oils and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject.",
+        "Ed Eastham is a contemporary artist based in Manchester working in charcoal, oil and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to. sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject."
       ],
       "image": "work-01.jpg",
       "cv": [],
@@ -95,9 +95,18 @@
       "intro": "",
       "works": [
         {
-          "file": "work-04.jpg",
+          "file": "img_4663.jpeg",
           "title": "Untitled",
           "medium": "Charcoal on canvas",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "file": "img_5692.jpeg",
+          "title": "Untitled",
+          "medium": "Charcoal on paper",
           "size": "",
           "year": "",
           "price": "",
@@ -154,9 +163,9 @@
       "intro": "",
       "works": [
         {
-          "file": "work-02.jpg",
+          "file": "img_2885.jpeg",
           "title": "Untitled",
-          "medium": "Mixed media and gold leaf on board",
+          "medium": "Acrylic on board",
           "size": "",
           "year": "",
           "price": "",
@@ -177,23 +186,23 @@
       "slug": "life-drawings",
       "title": "Life Drawings",
       "intro": "",
-      "works": []
-    },
-    {
-      "slug": "mixed-media",
-      "title": "Mixed Media / Gelli Prints",
-      "intro": "",
       "works": [
         {
-          "file": "work-05.jpg",
+          "file": "img_0001.jpeg",
           "title": "Untitled",
-          "medium": "Oil pastel on board",
+          "medium": "Ink on paper - 10 minute pose",
           "size": "",
           "year": "",
           "price": "",
           "sold": false
         }
       ]
+    },
+    {
+      "slug": "mixed-media",
+      "title": "Mixed Media / Gelli Prints",
+      "intro": "",
+      "works": []
     },
     {
       "slug": "pen-and-ink",

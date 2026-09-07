@@ -8,8 +8,8 @@ backend:
     delete: "Remove {{collection}} “{{slug}}”"
     uploadMedia: "Upload “{{path}}”"
     deleteMedia: "Remove “{{path}}”"
-site_url: https://ed-eastham.netlify.app
-display_url: https://ed-eastham.netlify.app
+site_url: https://massidefazio.github.io/ed-eastham
+display_url: https://massidefazio.github.io/ed-eastham
 logo_url: /assets/logo/mark.png
 locale: en
 media_folder: assets/work
@@ -21,13 +21,15 @@ collections:
   - name: works
     label: Works
     label_singular: Work
+    description: "Every artwork on the site. Click one to change its title, picture or details. New Work adds a piece: you choose its category inside. Changes go live a minute after Publish."
+    thumbnail: file
     folder: content/works
     format: json
     extension: json
     create: true
     slug: "{{slug}}"
     identifier_field: title
-    summary: "{{title}} — {{category}} {{year}}"
+    summary: "{{title}} · {{medium}}"
     sortable_fields: [order, title, year, category]
     view_groups:
       - label: Category
@@ -46,6 +48,7 @@ collections:
   - name: categories
     label: Portfolio categories
     label_singular: Category
+    description: "The six portfolio pages and their order in the menu. A category with no works shows Coming soon on the site."
     folder: content/categories
     format: json
     extension: json

@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 fill=%27%23f6f5f2%27/%3E%3Cg fill=%27%23161615%27%3E%3Crect x=%2746%27 y=%2710%27 width=%278%27 height=%2780%27/%3E%3Crect x=%2710%27 y=%2710%27 width=%2780%27 height=%278%27/%3E%3Crect x=%2710%27 y=%2782%27 width=%2780%27 height=%278%27/%3E%3Crect x=%2726%27 y=%2746%27 width=%2748%27 height=%278%27/%3E%3C/g%3E%3C/svg%3E">
 <meta property="og:title" content="Ed Eastham, artist">
 <meta property="og:description" content="Portraits and figurative work in charcoal, oil and mixed media.">
-<meta property="og:image" content="/assets/work/work-03.jpg">
+<meta property="og:image" content="https://edeastham.co.uk/assets/work/work-03.jpg">
 <meta name="theme-color" content="#f6f5f2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -259,23 +259,24 @@ if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)){
 }
 /* All words and works live in content/site.json. Edit that file to change the site. */
 const HASH = !!window.HASH_MODE || location.protocol === 'file:';
-const pathOf = () => HASH ? location.hash.replace(/^#\/?/, '') : location.pathname.replace(/^\/+|\/+$/g, '');
+const pathOf = () => HASH ? location.hash.replace(/^#\/?/, '') : location.pathname.replace(/^\/ed-eastham(?=\/|$)/, '').replace(/^\/+|\/+$/g, '');
 let S = null, timers = [], lbList = [], lbIdx = 0, lastFocus = null;
 const main = document.getElementById('main');
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
-const ROOT = HASH ? '' : '/';
+const SUB = (location.pathname.match(/^\/ed-eastham(?=\/|$)/) || [''])[0];   /* '' on the real domain, '/ed-eastham' on github.io */
+const ROOT = HASH ? '' : SUB + '/';
 const work = f => ROOT + 'assets/work/' + f;
 const allWorks = () => S.categories.flatMap(c => c.works.map(w => Object.assign({ cat: c }, w)));
 const findWork = f => allWorks().find(w => w.file === f);
 const capOf = w => [w.medium, w.size, w.year].filter(Boolean).join(', ');
 
 function go(){ main.classList.add('out'); setTimeout(() => { render(); main.classList.remove('out'); }, 180); }
-function navigate(path){ if (HASH){ location.hash = '#' + path; return; } if (location.pathname === path){ render(); return; } history.pushState(null, '', path); go(); }
+function navigate(path){ if (HASH){ location.hash = '#' + path; return; } const full = SUB + path; if (location.pathname === full){ render(); return; } history.pushState(null, '', full); go(); }
 fetch(ROOT + 'content/site.json').then(r => r.json()).then(data => {
   S = data; applySettings(); buildMenu();
   if (HASH) addEventListener('hashchange', go);
   else { if (/^#\//.test(location.hash)) history.replaceState(null, '', location.hash.slice(1)); addEventListener('popstate', go); }
-  document.addEventListener('click', e => { if (HASH) return; const a = e.target.closest('a[href]'); if (!a || e.metaKey || e.ctrlKey || a.target === '_blank') return; const h = a.getAttribute('href'); if (/^#\//.test(h)){ e.preventDefault(); navigate(h.slice(1)); } else if (/^\/(?!\/)/.test(h)){ e.preventDefault(); navigate(h); } });
+  document.addEventListener('click', e => { if (HASH) return; const a = e.target.closest('a[href]'); if (!a || e.metaKey || e.ctrlKey || a.target === '_blank') return; const h = a.getAttribute('href'); if (/^#\//.test(h)){ e.preventDefault(); navigate(h.slice(1)); } else if (/^\/(?!\/)/.test(h)){ e.preventDefault(); navigate(h.replace(/^\/ed-eastham(?=\/|$)/, '')); } });
   render();
 });
 addEventListener('scroll', () => document.body.classList.toggle('scrolled', scrollY > 40), { passive:true });
@@ -323,14 +324,14 @@ function render(){
   document.querySelectorAll('#menu a').forEach(a => { const t = a.getAttribute('href').replace(/^#?\//, ''); if (t === h) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   if (head === 'portfolio' && sub && S.categories.some(c => c.slug === sub)) document.getElementById('pfItem').classList.add('open');
   const known = !head || head === 'portfolio' || !!S.pages[head];
-  if (!known && !HASH) history.replaceState(null, '', '/');
+  if (!known && !HASH) history.replaceState(null, '', SUB + '/');
   if (!head || !known) home(); else if (head === 'portfolio') sub ? category(sub) : portfolio(); else page(head);
   scrollTo(0, 0);
   const cat = sub && S.categories.find(c => c.slug === sub);
   document.title = (head && known ? ((cat ? cat.title : S.pages[head] ? S.pages[head].title : 'Portfolio') + ', ') : '') + S.name;
   main.querySelectorAll('.works .im img[data-full]').forEach(im => { const full = new Image(); full.src = im.dataset.full; full.onload = () => { im.src = full.src; im.classList.remove('lq'); im.classList.add('ld'); }; full.onerror = () => { im.classList.remove('lq'); im.classList.add('ld'); }; });
   reveal(); document.body.classList.toggle('scrolled', scrollY > 40);
-  if (!HASH) document.querySelectorAll('a[href^="#/"]').forEach(a => a.setAttribute('href', a.getAttribute('href').slice(1)));
+  if (!HASH) document.querySelectorAll('a[href^="#/"]').forEach(a => a.setAttribute('href', SUB + a.getAttribute('href').slice(1)));
 }
 const foot = () => '<footer><div class="l"><svg class="mark" aria-hidden="true"><use href="#ee"/></svg><b>' + esc(S.name) + '</b><span>' + esc(S.tagline || '') + '</span></div>' +
   '<div class="col"><b>Site</b><a href="#/about">' + esc(lbl('about')) + '</a><a href="#/portfolio">' + esc(lbl('portfolio')) + '</a><a href="#/commission">' + esc(lbl('commission')) + '</a><a href="#/shop">' + esc(lbl('shop')) + '</a><a href="#/contact">' + esc(lbl('contact')) + '</a></div>' +
