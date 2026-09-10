@@ -43,6 +43,7 @@ const out = {
 };
 optimise().then(() => {
   out.thumbs = fs.existsSync(THUMBS) ? fs.readdirSync(THUMBS).filter(f => /\.(jpe?g|png|webp)$/i.test(f)) : [];
+  fs.writeFileSync('content/index.json', JSON.stringify({ works: dir('content/works').map(w => w.id), categories: dir('content/categories').map(c => c.id) }, null, 2));
   fs.writeFileSync('content/site.json', JSON.stringify(out, null, 2));
   /* a real index.html at every address, so pages answer 200 and links unfurl properly */
   if (process.env.GITHUB_ACTIONS) { const html = fs.readFileSync('index.html', 'utf8'); for (const r of ['about', 'commission', 'shop', 'contact', 'portfolio', ...out.categories.map(c => 'portfolio/' + c.slug)]) { fs.mkdirSync(r, { recursive: true }); fs.writeFileSync(path.join(r, 'index.html'), html); } console.log('static copies for', 5 + out.categories.length, 'addresses'); }

@@ -226,7 +226,7 @@ body.menu,body.lbopen{overflow:hidden}
 
 <a class="skip" href="#main">Skip to content</a>
 <header>
-  <a id="brand" href="#/" aria-label="Ed Eastham, home"><svg class="mark"><use href="#ee"/></svg><span id="brandName"></span></a>
+  <a id="brand" href="#/" aria-label="Ed Eastham, home"><svg class="mark"><use href="#ee"/></svg><span id="brandName" data-edit="settings/site:wordmark"></span></a>
   <button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
 </header>
 
@@ -252,7 +252,7 @@ body.menu,body.lbopen{overflow:hidden}
 
 <script>
 /* Netlify Identity links (invites, password resets) land on the site root; hand them to the editor page */
-if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)){
+if (!new URLSearchParams(location.search).has('edit') && /(invite|recovery|confirmation|email_change)_token=/.test(location.hash)){
   const w = document.createElement('script'); w.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
   w.onload = () => { const ni = window.netlifyIdentity; if (!ni) return; ni.on('login', () => { document.location.href = '/admin/'; }); };
   document.head.appendChild(w);
@@ -265,14 +265,14 @@ const main = document.getElementById('main');
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
 const SUB = (location.pathname.match(/^\/ed-eastham(?=\/|$)/) || [''])[0];   /* '' on the real domain, '/ed-eastham' on github.io */
 const ROOT = HASH ? '' : SUB + '/';
-const work = f => ROOT + 'assets/work/' + f;
+const work = f => new URLSearchParams(location.search).get('edit') === '1' && window.__studioPictures?.[f] || ROOT + 'assets/work/' + f;
 const hasThumb = f => !S.thumbs || S.thumbs.includes(f);
 const allWorks = () => S.categories.flatMap(c => c.works.map(w => Object.assign({ cat: c }, w)));
 const findWork = f => allWorks().find(w => w.file === f);
 const capOf = w => [w.medium, w.size, w.year].filter(Boolean).join(', ');
 
 function go(){ main.classList.add('out'); setTimeout(() => { render(); main.classList.remove('out'); }, 180); }
-function navigate(path){ if (HASH){ location.hash = '#' + path; return; } const full = SUB + path; if (location.pathname === full){ render(); return; } history.pushState(null, '', full); go(); }
+function navigate(path){ if (HASH){ location.hash = '#' + path; return; } const full = SUB + path; if (location.pathname === full){ render(); return; } history.pushState(null, '', full + (new URLSearchParams(location.search).get('edit') === '1' ? '?edit=1' : '')); go(); }
 fetch(ROOT + 'content/site.json').then(r => r.json()).then(data => {
   S = data; applySettings(); buildMenu();
   if (HASH) addEventListener('hashchange', go);
@@ -331,6 +331,7 @@ function render(){
   const cat = sub && S.categories.find(c => c.slug === sub);
   document.title = (head && known ? ((cat ? cat.title : S.pages[head] ? S.pages[head].title : 'Portfolio') + ', ') : '') + S.name;
   main.querySelectorAll('.works .im img[data-full]').forEach(im => { const full = new Image(); full.src = im.dataset.full; full.onload = () => { im.src = full.src; im.classList.remove('lq'); im.classList.add('ld'); }; full.onerror = () => { im.classList.remove('lq'); im.classList.add('ld'); }; });
+  editHooks();
   reveal(); document.body.classList.toggle('scrolled', scrollY > 40);
   if (!HASH) document.querySelectorAll('a[href^="#/"]').forEach(a => a.setAttribute('href', SUB + a.getAttribute('href').slice(1)));
 }
@@ -346,7 +347,7 @@ function home(){
   const hs = (S.settings || {}).home || {}; const sel = pool.slice(0, hs.selectedCount || 6); const lg = (S.settings || {}).logo || {};
   main.innerHTML = '<section id="stage">' +
     [1,2].map(i => '<div class="slot s' + i + '" data-slot="' + (i - 1) + '"></div>').join('') +
-    '<div class="logo">' + (lg.style === 'image' && lg.image ? '<img src="' + work(lg.image.replace(/^.*assets\/work\//, '')) + '" alt="' + esc(S.name) + '">' : '<svg class="mark" aria-hidden="true"><use href="#ee"/></svg><div class="word">' + esc(S.wordmark) + '</div>') + '<p class="tag">' + esc(S.tagline || '') + '</p></div>' +
+    '<div class="logo">' + (lg.style === 'image' && lg.image ? '<img src="' + work(lg.image.replace(/^.*assets\/work\//, '')) + '" alt="' + esc(S.name) + '">' : '<svg class="mark" aria-hidden="true"><use href="#ee"/></svg><div class="word" data-edit="settings/site:wordmark">' + esc(S.wordmark) + '</div>') + '<p class="tag" data-edit="settings/site:tagline">' + esc(S.tagline || '') + '</p></div>' +
     '<a class="hint ul" href="#/portfolio">View the portfolio</a></section>' +
     (hs.showSelectedWorks === false ? '' : '<section id="selected"><div class="row"><h2>Selected works</h2><a class="label" href="#/portfolio">All works</a></div><div class="sel">' +
     sel.map(w => '<a href="#/portfolio/' + w.cat.slug + '"><div class="im"><img src="' + work(w.file) + '" alt="' + esc(w.title) + '" loading="lazy"></div><div class="c"><em>' + esc(w.title) + '</em><span>' + esc(w.cat.title) + '</span></div></a>').join('') + '</div></section>') +
@@ -382,7 +383,7 @@ function category(slug){
 }
 function page(key){
   const p = S.pages[key]; let body = '';
-  const text = '<div class="text">' + p.body.map(t => '<p>' + esc(t) + '</p>').join('') + '</div>';
+  const text = '<div class="text">' + p.body.map((t, n) => '<p data-edit="pages/' + key + ':body.' + n + '">' + esc(t) + '</p>').join('') + '</div>';
   if (key === 'about'){
     const cv = (p.cv && p.cv.length) ? '<div class="sec"><span class="label">Selected exhibitions and education</span><ul class="cv">' + p.cv.map(r => '<li><span>' + esc(r.year) + '</span><span>' + esc(r.text) + '</span></li>').join('') + '</ul></div>' : '';
     body = '<div class="two">' + text + '<div class="portrait">' + (p.image ? '<img src="' + work(p.image) + '" alt="">' : '') + '</div></div>' + cv;
@@ -396,18 +397,51 @@ function page(key){
     body = text + '<a class="contact-big" href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a>' + (S.instagram ? '<p style="margin:-24px 0 40px"><a class="ul" href="' + esc(S.instagram) + '" target="_blank" rel="noopener">Instagram</a></p>' : '') +
       '<form id="cf"><label>Name<input name="name" required autocomplete="name"></label><label>Email<input name="email" type="email" required autocomplete="email"></label><label>Message<textarea name="msg" required></textarea></label><div><button class="cta" type="submit">Send</button></div></form><p class="note">Send opens your email app with the message ready to go.</p>';
   }
-  main.innerHTML = '<section class="page"><h1>' + esc(p.title) + '</h1>' + body + '</section>' + foot();
+  main.innerHTML = '<section class="page"><h1 data-edit="pages/' + key + ':title">' + esc(p.title) + '</h1>' + body + '</section>' + foot();
   if (key === 'shop') main.querySelectorAll('figure').forEach(f => f.addEventListener('click', () => openLb(+f.dataset.i)));
   const form = document.getElementById('cf');
   if (form) form.addEventListener('submit', e => { e.preventDefault(); const d = new FormData(form); location.href = mailtoFor(d.get('name'), d.get('email'), d.get('msg')); });
 }
+
+/* Studio hooks do not style or alter the public page. IDs are supplied with editor state. */
+function editHooks(){
+  const mark = (el, key) => { if (el && key) el.setAttribute('data-edit', key); };
+  const tagWork = (container, w) => {
+    if (!w?.id) return;
+    const key = 'works/' + w.id + ':';
+    mark(container.querySelector('img'), key + 'file');
+    mark(container.querySelector('em'), key + 'title');
+    mark(container.querySelector('.price'), key + 'price');
+    const em = container.querySelector('em');
+    const meta = container.querySelector('figcaption > div > span');
+    if (em && w.year && em.nextSibling?.nodeType === 3) {
+      const node = em.nextSibling, span = document.createElement('span');
+      span.textContent = w.year; span.style.color = 'inherit';
+      node.textContent = ', '; node.after(span); mark(span, key + 'year');
+    }
+    if (meta && w.medium) {
+      meta.textContent = ''; const span = document.createElement('span');
+      span.textContent = w.medium; mark(span, key + 'medium'); meta.append(span);
+      if (w.size) meta.append(', ' + w.size);
+    }
+  };
+  main.querySelectorAll('.works figure').forEach((f, i) => tagWork(f, lbList[i]));
+  main.querySelectorAll('.sel a').forEach((a, i) => tagWork(a, allWorks()[i]));
+  main.querySelectorAll('.slot img').forEach(im => { const w = allWorks().find(w => work(w.file) === im.getAttribute('src')); if (w?.id) mark(im, 'works/' + w.id + ':file'); });
+  const c = S.categories.find(c => pathOf() === 'portfolio/' + c.slug);
+  if (c){ mark(main.querySelector('h1'), 'categories/' + c.slug + ':title'); mark(main.querySelector('.intro'), 'categories/' + c.slug + ':intro'); const grid = main.querySelector('.works'); if(grid) grid.dataset.editlist = 'works:' + c.slug; }
+  main.querySelectorAll('.catlist a').forEach(a => { const c = S.categories.find(c => a.getAttribute('href').endsWith('/portfolio/' + c.slug)); if(c) mark(a.querySelector('.t'), 'categories/' + c.slug + ':title'); });
+  mark(main.querySelector('footer .l span'), 'settings/site:tagline');
+  document.dispatchEvent(new Event('studio:render'));
+}
+window.__site = { getS: () => S, setS(next) { S = next; applySettings(); buildMenu(); render(); }, render, navigate, pathOf };
 
 function mailtoFor(name, email, msg){ return 'mailto:' + S.email + '?subject=' + encodeURIComponent('Message from ' + name) + '&body=' + encodeURIComponent(msg + '\n\n' + name + '\n' + email); }
 window.mailtoFor = mailtoFor;
 /* lightbox */
 const lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap'), lbStrip = document.getElementById('lbStrip');
 function openLb(i){ lastFocus = document.activeElement; lbIdx = i; lbStrip.innerHTML = lbList.map((w, k) => '<button data-k="' + k + '" aria-label="Work ' + (k + 1) + '"><img src="' + work(w.file) + '" alt=""></button>').join(''); lbStrip.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { lbIdx = +b.dataset.k; showLb(); })); showLb(); lb.classList.add('open'); document.body.classList.add('lbopen'); document.getElementById('lbClose').focus(); }
-function showLb(){ lb.classList.remove('zoom'); const w = lbList[lbIdx]; lbImg.src = work(w.file); lbImg.alt = w.title; lbCap.innerHTML = '<em>' + esc(w.title) + '</em>' + (w.year ? ', ' + esc(w.year) : '') + '<span>' + esc(capOf(w)) + (w.price ? '  ·  ' + esc(w.price) : '') + '</span><span>' + (lbIdx + 1) + ' of ' + lbList.length + '  ·  <a class="ul" href="mailto:' + esc(S.email) + '?subject=' + encodeURIComponent('Enquiry: ' + w.title) + '">Enquire</a>  ·  <span class="zoomhint">Click to zoom</span></span>'; lbStrip.querySelectorAll('button').forEach((b, k) => b.classList.toggle('on', k === lbIdx)); }
+function showLb(){ lb.classList.remove('zoom'); const w = lbList[lbIdx]; lbImg.src = work(w.file); lbImg.alt = w.title; lbCap.innerHTML = '<em>' + esc(w.title) + '</em>' + (w.year ? ', ' + esc(w.year) : '') + '<span>' + esc(capOf(w)) + (w.price ? '  ·  ' + esc(w.price) : '') + '</span><span>' + (lbIdx + 1) + ' of ' + lbList.length + '  ·  <a class="ul" href="mailto:' + esc(S.email) + '?subject=' + encodeURIComponent('Enquiry: ' + w.title) + '">Enquire</a>  ·  <span class="zoomhint">Click to zoom</span></span>'; lbStrip.querySelectorAll('button').forEach((b, k) => b.classList.toggle('on', k === lbIdx)); if(w.id){ lbImg.dataset.edit = 'works/' + w.id + ':file'; lbCap.querySelector('em').dataset.edit = 'works/' + w.id + ':title'; } }
 function stepLb(d){ lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLb(); }
 function closeLb(){ if (!lb.classList.contains('open')) return; lb.classList.remove('open', 'zoom'); document.body.classList.remove('lbopen'); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
 lbImg.addEventListener('click', e => { const r = lbImg.getBoundingClientRect(); lbImg.style.setProperty('--zx', ((e.clientX - r.left) / r.width * 100) + '%'); lbImg.style.setProperty('--zy', ((e.clientY - r.top) / r.height * 100) + '%'); lb.classList.toggle('zoom'); });
