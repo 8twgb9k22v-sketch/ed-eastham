@@ -273,7 +273,8 @@ const capOf = w => [w.medium, w.size, w.year].filter(Boolean).join(', ');
 
 function go(){ main.classList.add('out'); setTimeout(() => { render(); main.classList.remove('out'); }, 180); }
 function navigate(path){ if (HASH){ location.hash = '#' + path; return; } const full = SUB + path; if (location.pathname === full){ render(); return; } history.pushState(null, '', full + (new URLSearchParams(location.search).get('edit') === '1' ? '?edit=1' : '')); go(); }
-fetch(ROOT + 'content/site.json').then(r => r.json()).then(data => {
+const componentReady = new Promise((resolve, reject) => { const script = document.createElement('script'); script.src = ROOT + 'components.js'; script.onload = resolve; script.onerror = reject; document.head.append(script); });
+Promise.all([fetch(ROOT + 'content/site.json').then(r => r.json()), componentReady]).then(([data]) => {
   S = data; applySettings(); buildMenu();
   if (HASH) addEventListener('hashchange', go);
   else { if (/^#\//.test(location.hash)) history.replaceState(null, '', location.hash.slice(1)); addEventListener('popstate', go); }
@@ -290,13 +291,16 @@ function applySettings(){
   if (c.background && c.text){ r.setProperty('--muted', mix(c.text, c.background, .62)); r.setProperty('--line', hexToRgba(c.text, .14)); r.setProperty('--soft', mix(c.text, c.background, .06)); r.setProperty('--hdr', hexToRgba(c.background, .82)); }
   const faces = { 'Hanken Grotesk': '"Hanken Grotesk","Helvetica Neue",Arial,sans-serif', 'Instrument Sans': '"Instrument Sans","Helvetica Neue",Arial,sans-serif', 'DM Sans': '"DM Sans","Helvetica Neue",Arial,sans-serif', 'Cormorant Garamond': '"Cormorant Garamond",Georgia,serif' };
   if (st.typeface && faces[st.typeface]) r.setProperty('--font', faces[st.typeface]);
-  if (st.typeface === 'Cormorant Garamond') document.body.style.fontSize = '20px';
+  document.body.style.fontSize = st.typeface === 'Cormorant Garamond' ? '20px' : '';
   const L = st.labels || {}; document.querySelectorAll('#menu a[href="#/about"]').forEach(a => a.textContent = L.about || 'About');
   document.querySelectorAll('#menu a[href="#/commission"]').forEach(a => a.textContent = L.commission || 'Commission');
   document.querySelectorAll('#menu a[href="#/shop"]').forEach(a => a.textContent = L.shop || 'Shop');
   document.querySelectorAll('#menu a[href="#/contact"]').forEach(a => a.textContent = L.contact || 'Contact');
   const pf = document.getElementById('pfToggle'); if (pf) pf.childNodes[0].textContent = (L.portfolio || 'Portfolio') + ' ';
-  const lg = (st.logo || {}); if (lg.style === 'image' && lg.image){ const b = document.getElementById('brand'); b.querySelector('svg').replaceWith(Object.assign(new Image(), { src: work(lg.image.replace(/^.*assets\/work\//, '')), alt: S.name })); }
+  const lg = (st.logo || {}), brand = document.getElementById('brand');
+  brand.querySelector('svg,img')?.remove();
+  if (lg.style === 'image' && lg.image) brand.prepend(Object.assign(new Image(), { src: work(lg.image.replace(/^.*assets\/work\//, '')), alt: S.name }));
+  else brand.insertAdjacentHTML('afterbegin', '<svg class="mark"><use href="#ee"/></svg>');
 }
 function hexToRgba(h, a){ const n = parseInt(h.slice(1), 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; }
 function mix(a, b, t){ const A = parseInt(a.slice(1), 16), B = parseInt(b.slice(1), 16); const ch = s => Math.round(((A >> s) & 255) * t + ((B >> s) & 255) * (1 - t)); return '#' + [16, 8, 0].map(s => ch(s).toString(16).padStart(2, '0')).join(''); }
@@ -354,11 +358,12 @@ function home(){
     (hs.showCategories === false ? '' : '<section id="cats"><div class="row"><h2>' + esc(lbl('portfolio')) + '</h2><span class="label">' + pool.length + ' works</span></div><ul class="catlist">' +
     S.categories.map(c => '<li><a href="#/portfolio/' + c.slug + '"><div class="im">' + (c.works[0] ? '<img src="' + work(c.works[0].file) + '" alt="" loading="lazy">' : '') + '</div><span class="t">' + esc(c.title) + '</span><span class="n">' + (c.works.length ? c.works.length + (c.works.length === 1 ? ' work' : ' works') : 'Coming soon') + '<i></i></span></a></li>').join('') +
     '</ul></section>') +
-    (hs.showCommission === false ? '' : '<section id="comm"><div><h2>Commission a portrait</h2><p>' + esc((S.pages.commission.body || [''])[0]) + '</p><a class="cta" href="#/commission">How it works</a></div><div class="im"><img src="' + work((S.pages.about.image) || pool[0].file) + '" alt="" loading="lazy"></div></section>') + foot();
+    (hs.showCommission === false ? '' : '<section id="comm"><div><h2>Commission a portrait</h2><p>' + esc((S.pages.commission.body || [''])[0]) + '</p><a class="cta" href="#/commission">How it works</a></div><div class="im">' + ((S.pages.about.image || pool[0]?.file) ? '<img src="' + work(S.pages.about.image || pool[0].file) + '" alt="" loading="lazy">' : '') + '</div></section>') + foot();
   /* five slots around the logo, each cycling through the featured works on its own clock */
   const slots = [...main.querySelectorAll('.slot')];
   slots.forEach((slot, k) => {
     const seq = feat.map((_, j) => feat[(j + k) % feat.length]);
+    if (!seq.length) return;
     slot.innerHTML = seq.map((w, j) => '<img src="' + work(w.file) + '" alt="' + esc(w.title || 'Artwork') + '"' + (j ? ' loading="lazy"' : '') + (j === 0 ? ' class="on"' : '') + '>').join('') + '<a href="#/portfolio/' + esc(seq[0].cat.slug) + '" aria-label="' + esc(seq[0].cat.title || 'Portfolio') + '"></a><div class="cap">' + esc(seq[0].cat.title || '') + '</div>';
     const imgs = [...slot.querySelectorAll('img')]; let i = 0;
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timers.push(setInterval(() => { i = (i + 1) % imgs.length; imgs.forEach((im, j) => im.classList.toggle('on', j === i)); slot.querySelector('a').href = '#/portfolio/' + seq[i].cat.slug; slot.querySelector('.cap').textContent = seq[i].cat.title || ''; }, 5200 + k * 1100));
@@ -432,6 +437,7 @@ function editHooks(){
   if (c){ mark(main.querySelector('h1'), 'categories/' + c.slug + ':title'); mark(main.querySelector('.intro'), 'categories/' + c.slug + ':intro'); const grid = main.querySelector('.works'); if(grid) grid.dataset.editlist = 'works:' + c.slug; }
   main.querySelectorAll('.catlist a').forEach(a => { const c = S.categories.find(c => a.getAttribute('href').endsWith('/portfolio/' + c.slug)); if(c) mark(a.querySelector('.t'), 'categories/' + c.slug + ':title'); });
   mark(main.querySelector('footer .l span'), 'settings/site:tagline');
+  window.SiteComponents?.apply(S, pathOf(), work);
   document.dispatchEvent(new Event('studio:render'));
 }
 window.__site = { getS: () => S, setS(next) { S = next; applySettings(); buildMenu(); render(); }, render, navigate, pathOf };

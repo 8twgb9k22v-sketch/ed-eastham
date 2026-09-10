@@ -39,8 +39,10 @@ const out = {
   home: { featured: (home.featured || []).map(id => { const w = works.find(x => x.id === id || base(x.file) === id || base(x.file) === id + '.jpg'); return w ? base(w.file) : null; }).filter(Boolean) },
   pages,
   settings: { colours: look.colours, typeface: look.typeface, logo: look.logo && { style: look.logo.style, image: base(look.logo.image) }, home: { showSelectedWorks: home.showSelectedWorks !== false, showCategories: home.showCategories !== false, showCommission: home.showCommission !== false, selectedCount: home.selectedCount || 6 }, labels: look.labels, social: look.social || [], footerLine: look.footerLine || '' },
-  categories: cats.map(c => ({ slug: c.slug, title: c.title, intro: c.intro || '', works: works.filter(w => w.category === c.slug).map(w => ({ file: base(w.file), title: w.title, medium: w.medium, size: w.size || '', year: w.year || '', price: w.price || '', sold: !!w.sold })) }))
+  categories: cats.map(c => ({ slug: c.slug, title: c.title, intro: c.intro || '', works: works.filter(w => w.category === c.slug).map(w => ({ id: w.id, file: base(w.file), title: w.title, medium: w.medium, size: w.size || '', year: w.year || '', price: w.price || '', sold: !!w.sold })) }))
 };
+out.settings.components = look.components || {};
+out.settings.blocks = look.blocks || {};
 optimise().then(() => {
   out.thumbs = fs.existsSync(THUMBS) ? fs.readdirSync(THUMBS).filter(f => /\.(jpe?g|png|webp)$/i.test(f)) : [];
   fs.writeFileSync('content/index.json', JSON.stringify({ works: dir('content/works').map(w => w.id), categories: dir('content/categories').map(c => c.id) }, null, 2));
