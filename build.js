@@ -13,12 +13,13 @@ async function optimise(){
   for (const f of fs.readdirSync(WORK).filter(f => /\.(jpe?g|png|webp)$/i.test(f))) {
    try {
     const src = path.join(WORK, f), stat = fs.statSync(src); let img = sharp(src); const meta = await img.metadata();
+    const fmt = /\.png$/i.test(f) ? 'png' : /\.webp$/i.test(f) ? 'webp' : 'jpeg';
+    const encode = im => fmt === 'png' ? im.png({ compressionLevel: 9 }) : fmt === 'webp' ? im.webp({ quality: 84 }) : im.jpeg({ quality: 84, mozjpeg: true });
     if ((meta.width || 0) > 1800 || stat.size > 700000) {
-      await sharp(src).rotate().resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 84, mozjpeg: true }).toFile(src + '.tmp');
+      await encode(sharp(src).rotate().resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true })).toFile(src + '.tmp');
       fs.renameSync(src + '.tmp', src); console.log('shrunk', f, Math.round(stat.size / 1024) + 'KB ->', Math.round(fs.statSync(src).size / 1024) + 'KB');
     }
-    const t = path.join(THUMBS, f);
-    if (!fs.existsSync(t)) { await sharp(src).rotate().resize({ width: 640, height: 640, fit: 'inside' }).jpeg({ quality: 80 }).toFile(t); console.log('thumb', f); }
+    await encode(sharp(src).rotate().resize({ width: 640, height: 640, fit: 'inside' })).toFile(path.join(THUMBS, f));   /* always fresh, so a replaced picture never keeps the old thumbnail */
    } catch (e) { console.log('could not process', f, '(left as is):', e.message); }
   }
   for (const f of fs.readdirSync(WORK)) if (/\.heic$/i.test(f)) console.log('WARNING: ' + f + ' is a HEIC file; browsers cannot show it. Re-save it as JPEG.');
@@ -28,7 +29,7 @@ const home = read('content/settings/home.json');
 const look = read('content/settings/look.json');
 const pages = {}; for (const k of ['about', 'commission', 'shop', 'contact']) pages[k] = read(`content/pages/${k}.json`);
 if (pages.about.image) pages.about.image = base(pages.about.image);
-const works = dir('content/works').filter(w => w.file && w.title).sort((a, b) => (a.order || 99) - (b.order || 99) || a.id.localeCompare(b.id));
+const works = dir('content/works').filter(w => w.file && w.title).filter(w => { const ok = !/\.heic$/i.test(w.file); if (!ok) console.log('SKIPPED ' + w.id + ': ' + base(w.file) + ' is a HEIC file browsers cannot show; re-save it as JPEG'); return ok; }).sort((a, b) => (a.order || 99) - (b.order || 99) || a.id.localeCompare(b.id));
 const cats = dir('content/categories').map(c => ({ ...c, slug: c.id })).sort((a, b) => (a.order || 99) - (b.order || 99));
 const known = new Set(cats.map(c => c.slug));
 const orphans = works.filter(w => !known.has(w.category));

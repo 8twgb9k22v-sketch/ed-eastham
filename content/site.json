@@ -2,7 +2,7 @@
   "name": "Ed Eastham",
   "wordmark": "Ed Eastham",
   "role": "Artist",
-  "tagline": "Portraits and figurative work in charcoal, oil and mixed media.",
+  "tagline": "Portraits and figurative work in charcoal, chalk, acrylics, oil and mixed media.",
   "email": "hello@edeastham.example",
   "instagram": "",
   "location": "",
@@ -17,7 +17,7 @@
     "about": {
       "title": "About",
       "body": [
-        "Ed Eastham is a contemporary artist based in Manchester working in charcoal, chalk, acrylic, oils and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject.",
+        "Ed Eastham is a contemporary artist based in Manchester working in charcoal, chalk, acrylic, oils and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject. ",
         "Ed Eastham is a contemporary artist based in Manchester working in charcoal, oil and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to. sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject."
       ],
       "image": "work-01.jpg",
@@ -185,7 +185,16 @@
       "intro": "",
       "works": [
         {
-          "file": "img_0001.jpeg",
+          "file": "img_0059.jpeg",
+          "title": "Untitled",
+          "medium": "Ink on paper - 10 minute pose",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "file": "img_0061.jpeg",
           "title": "Untitled",
           "medium": "Ink on paper - 10 minute pose",
           "size": "",

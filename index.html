@@ -340,8 +340,9 @@ const foot = () => '<footer><div class="l"><svg class="mark" aria-hidden="true">
   '<div class="bottom"><span>All works © ' + esc(S.name) + ' ' + new Date().getFullYear() + '</span><span>' + esc((S.settings || {}).footerLine || '') + '</span></div></footer>';
 
 function home(){
-  const feat = S.home.featured.map(f => findWork(f) || { file: f, title: '', cat: { slug: '' } });
   const pool = allWorks();
+  const feat = S.home.featured.map(f => findWork(f)).filter(Boolean);
+  if (!feat.length) feat.push(...pool.slice(0, 5));   /* nothing chosen for the home page: show the first works instead of breaking */
   const hs = (S.settings || {}).home || {}; const sel = pool.slice(0, hs.selectedCount || 6); const lg = (S.settings || {}).logo || {};
   main.innerHTML = '<section id="stage">' +
     [1,2].map(i => '<div class="slot s' + i + '" data-slot="' + (i - 1) + '"></div>').join('') +
@@ -388,7 +389,7 @@ function page(key){
   } else if (key === 'commission'){
     body = text + '<ol class="steps">' + (p.steps || []).map(s => '<li><b>' + esc(s.t) + '</b><p>' + esc(s.d) + '</p></li>').join('') + '</ol><a class="cta" href="mailto:' + esc(S.email) + '?subject=Commission%20enquiry">' + esc(p.cta || 'Enquire') + '</a>';
   } else if (key === 'shop'){
-    const forSale = allWorks().filter(w => w.price); lbList = forSale;
+    const forSale = allWorks().filter(w => w.price && !w.sold); lbList = forSale;
     const avail = forSale.length ? forSale : allWorks(); lbList = avail;
     body = text + '<div class="sec"><span class="label">' + (forSale.length ? 'For sale' : 'Available works, price on enquiry') + '</span></div><div class="works" style="margin-top:40px">' + figures(avail, true) + '</div>';
   } else if (key === 'contact'){
