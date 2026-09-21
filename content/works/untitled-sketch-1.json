@@ -1,8 +1,10 @@
 {
   "sold": false,
-  "order": 1,
+  "order": 5,
   "file": "/ed-eastham/assets/work/img_4495.jpeg",
   "title": "Untitled sketch",
   "category": "charcoal-portraits",
-  "medium": "Charcoal on paper"
+  "medium": "Charcoal on paper",
+  "size": "A4",
+  "year": "2026"
 }
