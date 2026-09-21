@@ -17,8 +17,7 @@
     "about": {
       "title": "About",
       "body": [
-        "Ed Eastham is a contemporary artist based in Manchester working in charcoal, chalk, acrylic, oils and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject. ",
-        "Ed Eastham is a contemporary artist based in Manchester working in charcoal, oil and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to. sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject."
+        "Ed Eastham is a contemporary artist working primarily in charcoal, chalk, acrylic, oils and mixed media, with a focus on portraiture and the figure. His work explores the human form and inner emotions of the subject. Specialising in portraiture and figurative life drawing, Ed captures the quiet, unseen narratives of human experience. Rather than aiming for simple replication, the works relies heavily on strong tonal values and dramatic lighting to sculpt a sense of mood and presence. By balancing light and shadow, Ed invites viewers into an intimate space, evoking powerful feelings and a connection with each subject. "
       ],
       "image": "work-01.jpg",
       "cv": []
@@ -83,7 +82,9 @@
       "contact": "Contact"
     },
     "social": [],
-    "footerLine": "Images may not be reproduced without permission"
+    "footerLine": "Images may not be reproduced without permission",
+    "components": {},
+    "blocks": {}
   },
   "categories": [
     {
@@ -92,27 +93,100 @@
       "intro": "",
       "works": [
         {
-          "file": "img_4663.jpeg",
-          "title": "Untitled",
-          "medium": "Charcoal on canvas",
-          "size": "",
-          "year": "",
-          "price": "",
-          "sold": false
-        },
-        {
+          "id": "untitled-2",
           "file": "img_5692.jpeg",
           "title": "Untitled",
           "medium": "Charcoal on paper",
-          "size": "",
-          "year": "",
+          "size": "A4",
+          "year": "2026",
           "price": "",
           "sold": false
         },
         {
+          "id": "untitled-6",
+          "file": "img-5661-0d390a58.jpg",
+          "title": "Untitled",
+          "medium": "Charcoal on paper",
+          "size": "A4",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled",
+          "file": "img_4663.jpeg",
+          "title": "Untitled",
+          "medium": "Charcoal on canvas",
+          "size": "A4",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-sketch-1",
+          "file": "img_4495.jpeg",
+          "title": "Untitled sketch",
+          "medium": "Charcoal on paper",
+          "size": "A4",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "work-08",
           "file": "work-08.jpg",
           "title": "Untitled",
           "medium": "Charcoal on paper",
+          "size": "A4",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-5",
+          "file": "img-5627-2-57a38be3.jpg",
+          "title": "Untitled",
+          "medium": "Charcoal on paper",
+          "size": "A4 ",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-7",
+          "file": "img-4455-19880549.jpg",
+          "title": "Untitled ",
+          "medium": "Chalk on paper",
+          "size": "A4",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "light-study",
+          "file": "img-4554-1499f7df.jpg",
+          "title": "Light Study",
+          "medium": "Chalk & Charcoal on paper",
+          "size": "A4",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "the-farmer",
+          "file": "img-2928-87711331.jpg",
+          "title": "The Farmer",
+          "medium": "Chalk on Board",
+          "size": "12x15in",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-4",
+          "file": "img-3272-5a6cdaa5.jpg",
+          "title": "Untitled",
+          "medium": "Charcoal and Chalk on Board",
           "size": "",
           "year": "",
           "price": "",
@@ -122,19 +196,21 @@
     },
     {
       "slug": "painted-portraits",
-      "title": "Painted Portraits",
+      "title": "Paintings",
       "intro": "",
       "works": [
         {
+          "id": "work-03",
           "file": "work-03.jpg",
-          "title": "Untitled",
+          "title": "Woman in Shades",
           "medium": "Acrylic on board",
-          "size": "",
+          "size": "24x24in",
           "year": "",
-          "price": "",
+          "price": "£500 (limited prints available)",
           "sold": false
         },
         {
+          "id": "work-06",
           "file": "work-06.jpg",
           "title": "Untitled",
           "medium": "Acrylic on board",
@@ -144,13 +220,274 @@
           "sold": false
         },
         {
+          "id": "relax",
+          "file": "img-5035-18940d7c.jpg",
+          "title": "Relax",
+          "medium": "Oil Pastel and Chalk on Board",
+          "size": "24x24in",
+          "year": "2026",
+          "price": "£500",
+          "sold": false
+        },
+        {
+          "id": "the-fear",
+          "file": "img-1515-9d272bbf.jpg",
+          "title": "The Fear",
+          "medium": "Acrylic on Hessian Canvas",
+          "size": "8x10in",
+          "year": "",
+          "price": "£150",
+          "sold": false
+        },
+        {
+          "id": "rumination",
+          "file": "img-5629-0fe0d648.jpg",
+          "title": "Rumination",
+          "medium": "Golden Open Acrylics on Board",
+          "size": "12x13in",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "work-01",
           "file": "work-01.jpg",
-          "title": "Untitled",
+          "title": "Rebecca",
           "medium": "Oil on board",
           "size": "",
           "year": "",
           "price": "",
           "sold": false
+        },
+        {
+          "id": "rebecca-study-3",
+          "file": "img-4981-06146f6c.jpg",
+          "title": "Rebecca - Study 3",
+          "medium": "Acrylic on Canvas",
+          "size": "18x20in",
+          "year": "2019",
+          "price": "£500",
+          "sold": true
+        },
+        {
+          "id": "untitled-9",
+          "file": "img-4933-8de207d7.jpg",
+          "title": "Untitled",
+          "medium": "Acrylic on Canvas",
+          "size": "9x12in",
+          "year": "2026",
+          "price": "£150",
+          "sold": false
+        },
+        {
+          "id": "meditation",
+          "file": "img-5581-da41a3cd.jpg",
+          "title": "Meditation",
+          "medium": "Acyrlic on Canvas",
+          "size": "10x12in",
+          "year": "2026",
+          "price": "£200",
+          "sold": false
+        },
+        {
+          "id": "jo-at-gallery-when-life-meets-art",
+          "file": "img-0912-5107fa82.jpg",
+          "title": "Jo at Gallery - When Life Meets Art",
+          "medium": "Golden Open Acrylics on Canvas",
+          "size": "20x15in",
+          "year": "",
+          "price": "£500",
+          "sold": true
+        },
+        {
+          "id": "breakfast-in-50-s",
+          "file": "img-2178-238e92ca.jpg",
+          "title": "Breakfast in 50's",
+          "medium": "Acrylic on Canvas",
+          "size": "24x31.5in",
+          "year": "",
+          "price": "£400",
+          "sold": true
+        },
+        {
+          "id": "rebecca-study-4",
+          "file": "img-6333-6c01dbf6.jpg",
+          "title": "Rebecca - Study 4",
+          "medium": "Golden Open Acrylics on Canvas",
+          "size": "15x20in",
+          "year": "2024",
+          "price": "£350",
+          "sold": true
+        },
+        {
+          "id": "kim",
+          "file": "img-2212-0fda1356.jpg",
+          "title": "Kim",
+          "medium": "Acrylic and Mixed media on Canvas",
+          "size": "10x15in",
+          "year": "",
+          "price": "£350",
+          "sold": true
+        },
+        {
+          "id": "rebecca-study-2",
+          "file": "img-1701-f472be03.jpg",
+          "title": "Rebecca Study 2 - WIP",
+          "medium": "Oil on Canvas",
+          "size": "18x22in",
+          "year": "2025",
+          "price": "Not for Sale",
+          "sold": false
+        },
+        {
+          "id": "stranger-at-dinner",
+          "file": "img-2556-9cf6c3c4.jpg",
+          "title": "Stranger at Dinner",
+          "medium": "Oil on Canvas",
+          "size": "20x20in",
+          "year": "",
+          "price": "£300",
+          "sold": false
+        },
+        {
+          "id": "bluebird-for-dorothy",
+          "file": "img-2402-6458a4bc.jpg",
+          "title": "Bluebird for Dorothy",
+          "medium": "Watercolour on paper",
+          "size": "10x12in",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "empathy",
+          "file": "img-9793-d66692d7.jpg",
+          "title": "Empathy",
+          "medium": "Golden Open Acrylics on Canvas",
+          "size": "10x12in",
+          "year": "2025",
+          "price": "£200",
+          "sold": false
+        },
+        {
+          "id": "the-sleeper",
+          "file": "img-3664-a9c8f46a.jpg",
+          "title": "The Sleeper",
+          "medium": "Acrylic on Canvas",
+          "size": "24x31.5",
+          "year": "2007",
+          "price": "£350",
+          "sold": true
+        },
+        {
+          "id": "contemplation-study-3",
+          "file": "img-3646-dc896a8a.jpg",
+          "title": "Reflection",
+          "medium": "Acrylic on Canvas",
+          "size": "15x15in",
+          "year": "2007",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "contemplation-1",
+          "file": "img-2559-17b644e1.jpg",
+          "title": "Contemplation Series - Study 1",
+          "medium": "Acrylic on Canvas",
+          "size": "24x31.5in",
+          "year": "2007",
+          "price": "£200",
+          "sold": false
+        },
+        {
+          "id": "contemplation-study-2",
+          "file": "img-2561-1ffb8423.jpg",
+          "title": "Contemplation Series - Study 2",
+          "medium": "Acrylic on Canvas",
+          "size": "24x31.5in",
+          "year": "2007",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "contemplation-series-study-4",
+          "file": "img-3649-ba3b5b50.jpg",
+          "title": "Contemplation Series - Study 3",
+          "medium": "Acrylic on Canvas",
+          "size": "15X20in",
+          "year": "2007",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "contemplation-series-study-5",
+          "file": "img-3651-611782ea.jpg",
+          "title": "Contemplation Series - study 4",
+          "medium": "Acrylic on Canvas",
+          "size": "20x20in",
+          "year": "2007",
+          "price": "£250",
+          "sold": true
+        },
+        {
+          "id": "contemplation-series-study-5-1",
+          "file": "img-3652-d07835a3.jpg",
+          "title": "Contemplation Series - Study 5",
+          "medium": "Acrylic on Canvas",
+          "size": "15x20in",
+          "year": "2007",
+          "price": "",
+          "sold": true
+        },
+        {
+          "id": "contemplation-series-study-6",
+          "file": "img-3653-f505aca4.jpg",
+          "title": "Contemplation Series - Study 6",
+          "medium": "Acrylic on Canvas",
+          "size": "2 x 24x31.5in",
+          "year": "2007",
+          "price": "£400",
+          "sold": true
+        },
+        {
+          "id": "reflection-series-study-1",
+          "file": "img-3658-1f9657d7.jpg",
+          "title": "Reflection Series - Study 1",
+          "medium": "Chalk and Charcoal on Canvas",
+          "size": "24x31.5in",
+          "year": "2006",
+          "price": "£500",
+          "sold": true
+        },
+        {
+          "id": "reflection-series-study-2",
+          "file": "img-3660-90899695.jpg",
+          "title": "Reflection Series - Study 2",
+          "medium": "Chalk and Charcoal on Canvas",
+          "size": "24x31.5in",
+          "year": "2006",
+          "price": "£500",
+          "sold": true
+        },
+        {
+          "id": "julian-lloyd-webber-for-ribchester-arts-festival",
+          "file": "img-3661-7e379cff.jpg",
+          "title": "Julian Lloyd Webber - for Ribchester Arts Festival",
+          "medium": "Acyrlic on Canvas",
+          "size": "24x31.5in",
+          "year": "2006",
+          "price": "Commissioned for Arts Festival",
+          "sold": true
+        },
+        {
+          "id": "mother-child",
+          "file": "img-2554-32da69fd.jpg",
+          "title": "Mother & Child",
+          "medium": "Acrylic on Canvas",
+          "size": "24x24",
+          "year": "",
+          "price": "£350",
+          "sold": true
         }
       ]
     },
@@ -160,22 +497,104 @@
       "intro": "",
       "works": [
         {
-          "file": "img_2885.jpeg",
+          "id": "work-07",
+          "file": "work-07.jpg",
           "title": "Untitled",
-          "medium": "Acrylic on board",
+          "medium": "Acrylic and gold leaf on board",
+          "size": "12x12in",
+          "year": "",
+          "price": "£250",
+          "sold": false
+        },
+        {
+          "id": "seated-thinker",
+          "file": "img-2887-3a7a1495.jpg",
+          "title": "Seated Thinker",
+          "medium": "Golden Open Acrylics and Gold Leaf on Board",
+          "size": "12x16in",
+          "year": "2026",
+          "price": "£300 (prints available",
+          "sold": false
+        },
+        {
+          "id": "relaxing-at-the-spa",
+          "file": "img-2886-64f62185.jpg",
+          "title": "Relaxing at the Spa",
+          "medium": "Golden Open Acrylics on Canvas",
           "size": "",
+          "year": "2025",
+          "price": "£250",
+          "sold": false
+        },
+        {
+          "id": "abstract-figure",
+          "file": "img-3115-81d235ef.jpg",
+          "title": "Abstract figure",
+          "medium": "Acrylic and Gold Leaf on Board",
+          "size": "16x24in",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "reclining-nude",
+          "file": "img-1004-142f0d74.jpg",
+          "title": "Reclining nude",
+          "medium": "White Chalk on black paper",
+          "size": "A4",
           "year": "",
           "price": "",
           "sold": false
         },
         {
-          "file": "work-07.jpg",
-          "title": "Untitled",
-          "medium": "Acrylic and gold leaf on board",
-          "size": "",
+          "id": "reclining-figure-rear-30-minute-pose",
+          "file": "img-0072-6d1726b5.jpg",
+          "title": "Reclining figure rear ",
+          "medium": "Watercolour on paper",
+          "size": "A2",
+          "year": "2005",
+          "price": "£250",
+          "sold": true
+        },
+        {
+          "id": "contemplation",
+          "file": "img-0435-26265d75.jpg",
+          "title": "Contemplation",
+          "medium": "Acrylic on paper",
+          "size": "A5",
+          "year": "",
+          "price": "£100",
+          "sold": false
+        },
+        {
+          "id": "figure-rear-pose",
+          "file": "img-0355-2-9d95c31f.jpg",
+          "title": "Figure rear pose ",
+          "medium": "Pencil & watercolour on paper",
+          "size": "A4",
           "year": "",
           "price": "",
           "sold": false
+        },
+        {
+          "id": "figure-study-2",
+          "file": "img-1027-ebacd075.jpg",
+          "title": "Figure study",
+          "medium": "Acrylic on Canvas",
+          "size": "A2",
+          "year": "2007",
+          "price": "£450",
+          "sold": true
+        },
+        {
+          "id": "reclining-nude-1",
+          "file": "img-3872-2-dc164651.jpg",
+          "title": "Reclining Nude",
+          "medium": "Scraper Board ",
+          "size": "A3",
+          "year": "2005",
+          "price": "",
+          "sold": true
         }
       ]
     },
@@ -185,6 +604,217 @@
       "intro": "",
       "works": [
         {
+          "id": "seated-pose-25-minutes",
+          "file": "img-4015-1ee1e480.jpg",
+          "title": "Seated Pose - 25 minutes",
+          "medium": "Chalk and Charcoal on Paper",
+          "size": "A3",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "reclining-in-pain",
+          "file": "img-1056-c2752059.jpg",
+          "title": "Reclining in pain",
+          "medium": "Watercolour on paper",
+          "size": "A4",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "back-study",
+          "file": "img-0269-2-c3ab5c35.jpg",
+          "title": "Back study",
+          "medium": "Watercolour on paper",
+          "size": "A5",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-8",
+          "file": "img-0001-fd369a6b.jpg",
+          "title": "Reclining Figure - 15 minute pose",
+          "medium": "Ink on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "movement-study-2-x-15-minutes",
+          "file": "img-4641-abc99dcf.jpg",
+          "title": "Movement Study - 2 x 15 minutes",
+          "medium": "Pencil on paper",
+          "size": "A3",
+          "year": "2018",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "foreshortening-reclining-pose-20-minutes",
+          "file": "img-4556-2-ffabce1c.jpg",
+          "title": "Foreshortening Reclining Pose - 20 minutes",
+          "medium": "Pencil on paper",
+          "size": "A3",
+          "year": "2018",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-3",
+          "file": "img_0061.jpeg",
+          "title": "Untitled",
+          "medium": "Ink on paper - 10 minute pose",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "figure-study-1",
+          "file": "img-0060-7fe4ca36.jpg",
+          "title": "Figure Study - 1 minute pose",
+          "medium": "Ink on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "figure-study",
+          "file": "img-0056-f7d11f34.jpg",
+          "title": "Figure study - 5 minute pose",
+          "medium": "Mixed Media on paper",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitled-1",
+          "file": "img_2885.jpeg",
+          "title": "Tessellation of Figures",
+          "medium": "Acrylic on board",
+          "size": "10X12in",
+          "year": "",
+          "price": "£150",
+          "sold": false
+        },
+        {
+          "id": "movement-study-1-5-minutes",
+          "file": "img-2194-039600b7.jpg",
+          "title": "Movement Study ( 10 minute study)",
+          "medium": "Charcoal on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "leaning-male-20-minute-study",
+          "file": "img-1535-ef444e18.jpg",
+          "title": "Leaning Male - 20 minute study",
+          "medium": "Ink on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "reclining-pose-15-minutes",
+          "file": "img-2288-a5718a3c.jpg",
+          "title": "Reclining pose - 15 minutes",
+          "medium": "Chalk & Charcoal on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "movement-study-1-to-5-minute-poses",
+          "file": "img-2196-6d1ee31b.jpg",
+          "title": "Movement Study - 1 to 5 minute poses",
+          "medium": "Charcoal on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "movement-study-1-to-5-minute-poses-1",
+          "file": "img-2197-231880c4.jpg",
+          "title": "Movement study - 1 to 5 minute poses",
+          "medium": "Chalk on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "male-movement-study-2-to-5-minute-poses",
+          "file": "img-1538-42e8b6c6.jpg",
+          "title": "Male movement study - 2 to 5 minute poses",
+          "medium": "Chalk on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "figure-line-drawing-2-minute-pose",
+          "file": "img-0003-ee41fe17.jpg",
+          "title": "Figure line drawing - 2 minute pose",
+          "medium": "Pen on paper",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "seated-pose-10-minutes",
+          "file": "img-2198-e88e230d.jpg",
+          "title": "Seated pose - 10 minutes",
+          "medium": "Mixed Media on paper",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "standing-pose-20-minutes",
+          "file": "img-2205-c6563110.jpg",
+          "title": "Standing pose - 20 minutes",
+          "medium": "Charcoal on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "standing-pose-20-minutes-1",
+          "file": "img-2207-2b217a11.jpg",
+          "title": "Standing Pose - 20 minutes",
+          "medium": "Chalk & Charcoal on paper",
+          "size": "A3",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "tessellation-of-figures-sketch",
+          "file": "img-3029-57a6383b.jpg",
+          "title": "Tessellation of figures sketch",
+          "medium": "Pen & ink",
+          "size": "",
+          "year": "",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "untitked",
           "file": "img_0059.jpeg",
           "title": "Untitled",
           "medium": "Ink on paper - 10 minute pose",
@@ -194,11 +824,42 @@
           "sold": false
         },
         {
-          "file": "img_0061.jpeg",
-          "title": "Untitled",
-          "medium": "Ink on paper - 10 minute pose",
-          "size": "",
-          "year": "",
+          "id": "reclining-15-minute-pose",
+          "file": "img-2276-c1287722.jpg",
+          "title": "Reclining - 15 minute pose",
+          "medium": "Chalk and Charcoal on Canvas",
+          "size": "A3",
+          "year": "2025",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "movement-study-2-x-10-minues",
+          "file": "img-4642-61a79c76.jpg",
+          "title": "Movement Study - 2 x 10 minues",
+          "medium": "Charcoal on paper",
+          "size": "A3",
+          "year": "2018",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "seated-pose",
+          "file": "img-2289-cf4b079b.jpg",
+          "title": "Seated Pose",
+          "medium": "Chalk and Charcoal on Paper",
+          "size": "A3",
+          "year": "2026",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "seated-pose-10-minutes-1",
+          "file": "img-4558-d1584518.jpg",
+          "title": "Seated Pose - 10 minutes",
+          "medium": "Ink on paper",
+          "size": "A3",
+          "year": "2018",
           "price": "",
           "sold": false
         }
@@ -208,13 +869,185 @@
       "slug": "mixed-media",
       "title": "Mixed Media / Gelli Prints",
       "intro": "",
-      "works": []
+      "works": [
+        {
+          "id": "introspection-series-study-4",
+          "file": "img-3271-1fd02e2d.jpg",
+          "title": "Introspection Series - Study 4",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£80",
+          "sold": false
+        },
+        {
+          "id": "introspection-series-study-1",
+          "file": "img-3261-060ac002.jpg",
+          "title": "Introspection Series - Study 1",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£50",
+          "sold": false
+        },
+        {
+          "id": "introspection-series-study-2",
+          "file": "img-3262-9e04da1d.jpg",
+          "title": "Introspection Series - Study 2 ",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£50",
+          "sold": false
+        },
+        {
+          "id": "introspection-series-study-3",
+          "file": "img-3263-980cd2f3.jpg",
+          "title": "Introspection Series - Study 3",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£50",
+          "sold": false
+        },
+        {
+          "id": "introspection-series-study-4-1",
+          "file": "img-3275-1c29ea84.jpg",
+          "title": "Introspection Series - Study 4",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£50",
+          "sold": false
+        },
+        {
+          "id": "introspection-series-study-5",
+          "file": "img-3292-70ab8504.jpg",
+          "title": "Introspection Series - Study 5",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£50",
+          "sold": false
+        },
+        {
+          "id": "reclining-nude-2",
+          "file": "img-3298-abc14e69.jpg",
+          "title": "Reclining Nude",
+          "medium": "Gelli Print",
+          "size": "A4",
+          "year": "2026",
+          "price": "£50",
+          "sold": false
+        },
+        {
+          "id": "forest-nymph",
+          "file": "img-3586-15ce467e.jpg",
+          "title": "Forest Nymph",
+          "medium": "Gelli Print and Chalk",
+          "size": "A4",
+          "year": "2025",
+          "price": "",
+          "sold": false
+        }
+      ]
     },
     {
       "slug": "pen-and-ink",
       "title": "Pen & Ink",
       "intro": "",
-      "works": []
+      "works": [
+        {
+          "id": "reflections",
+          "file": "img-9928-c639de5b.jpg",
+          "title": "Reflections",
+          "medium": "Ink on paper",
+          "size": "15x20in",
+          "year": "2024",
+          "price": "£150",
+          "sold": true
+        },
+        {
+          "id": "nico",
+          "file": "img-1050-d8320891.jpg",
+          "title": "Nico",
+          "medium": "Pen & ink",
+          "size": "A5",
+          "year": "",
+          "price": "Not for sale",
+          "sold": false
+        },
+        {
+          "id": "s",
+          "file": "img-1051-f6fd00c0.jpg",
+          "title": "Jacob",
+          "medium": "Pen & ink",
+          "size": "A5",
+          "year": "",
+          "price": "£80",
+          "sold": false
+        },
+        {
+          "id": "afraid-of-the-dark",
+          "file": "img-1052-e8293e72.jpg",
+          "title": "Afraid of the Dark",
+          "medium": "Pen & ink",
+          "size": "A5",
+          "year": "",
+          "price": "£100",
+          "sold": false
+        },
+        {
+          "id": "alone",
+          "file": "img-1053-98c280e7.jpg",
+          "title": "Alone",
+          "medium": "Pen & Ink and Watercolour",
+          "size": "A5",
+          "year": "",
+          "price": "£100",
+          "sold": true
+        },
+        {
+          "id": "the-scream",
+          "file": "img-1058-2da00d33.jpg",
+          "title": "The Scream",
+          "medium": "Pen & Ink",
+          "size": "A5",
+          "year": "",
+          "price": "£100",
+          "sold": false
+        },
+        {
+          "id": "in-thought",
+          "file": "img-5202-06432acf.jpg",
+          "title": "In Thought",
+          "medium": "Pen & ink",
+          "size": "A5",
+          "year": "2017",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "tony-wilson-study",
+          "file": "img-4661-2-9f118d34.jpg",
+          "title": "Tony Wilson Study",
+          "medium": "Pen & ink",
+          "size": "A5",
+          "year": "2017",
+          "price": "",
+          "sold": false
+        },
+        {
+          "id": "cat",
+          "file": "img-7339-3d74a3c6.jpg",
+          "title": "Cat - Otti",
+          "medium": "Ink on paper",
+          "size": "3x5in",
+          "year": "",
+          "price": "",
+          "sold": false
+        }
+      ]
     }
   ],
   "thumbs": [
